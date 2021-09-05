@@ -30,8 +30,18 @@ RSpec.describe 'show page' do
     expect(page).to have_content("Add a Pet to this Application")
     fill_in :search, with: "Lucy"
     click_on "Submit"
-    save_and_open_page
     expect(page).to have_content(@pet_1.name)
 
+  end
+  it 'has a section to add a pet to the application' do
+    visit "/applications/#{@application_1.id}"
+    expect(page).to have_content("Add a Pet to this Application")
+    fill_in :search, with: "Lucy"
+    click_on "Submit"
+    click_on "Adopt this Pet"
+    save_and_open_page
+    within("#pet-#{@pet_1.id}")do
+      expect(page).to have_content(@pet_1.name)
+    end
   end
 end

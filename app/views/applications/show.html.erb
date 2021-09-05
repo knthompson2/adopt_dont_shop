@@ -6,7 +6,9 @@
 <p>Application Status: <%= @application.status %></p>
 <h4>All pets on application: </h4>
 <% @application.pets.each do |pet| %>
+<section id="pet-<%= pet.id %>">
 <%= link_to "#{pet.name}", "/pets/#{pet.id}"%><br>
+</section >
 <% end %>
 
 <h3> Add a Pet to this Application </h3>
@@ -17,4 +19,5 @@
 <% end %>
 <% @pets&.each do |pet| %>
 <h4><%= pet.name %></h4>
+<p> <%= button_to "Adopt this Pet", "/applications/#{@application.id}", method: :post, params: {pet_id:"#{pet.id}"} %></p>
 <% end %>
