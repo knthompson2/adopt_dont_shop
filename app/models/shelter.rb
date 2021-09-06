@@ -16,6 +16,15 @@ class Shelter < ApplicationRecord
       .order("pets_count DESC")
   end
 
+  def self.desc_alpha
+    find_by_sql("SELECT * FROM shelters ORDER BY shelters.name DESC")
+  end
+
+  def self.pending_apps
+    select("shelters.*")
+    .joins(pets: :pet_applications)
+  end
+
   def pet_count
     pets.count
   end

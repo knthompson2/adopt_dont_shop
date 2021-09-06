@@ -1,0 +1,15 @@
+<h1>All pets on applications: </h1>
+<% @application.pets.each_with_index do |pet, index|%>
+
+  <h4><%= pet.name %>
+  <% if @application.pet_applications[index].status == "Approved"%>
+    <p><%= "#{pet.name} has been approved"%></p>
+  <% elsif @application.pet_applications[index].status == "Rejected"%>
+    <p><%= "#{pet.name} has been rejected"%></p>
+  <% end %>
+
+  <% if @application.pet_applications[index].status != "Approved" && @application.pet_applications[index].status != "Rejected" %>
+    <%= button_to "Approve #{pet.name}", "/admin/applications/#{@application.id}", method: :patch, params:{pet_id: pet.id, status: "Approved"} %></h4>
+    <%= button_to "Reject #{pet.name}", "/admin/applications/#{@application.id}", method: :patch, params:{pet_id: pet.id, status: "Rejected"} %></h4>
+  <% end %>
+<% end %>
