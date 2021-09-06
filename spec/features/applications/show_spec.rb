@@ -45,19 +45,28 @@ RSpec.describe 'show page' do
       expect(page).to have_content(@pet_1.name)
     end
   end
+  #adds description, submt app, checks case insensitivty, parial matches, no submit button with zero pets
   it 'has a section to input description and submit app' do
     visit "/applications/#{@application_1.id}"
-    # expect(page).to have_content("Add a Pet to this Application")
-    fill_in :search, with: "Lucy"
+    fill_in :search, with: "LuCy"
+
     click_on "Search"
+    expect(page).to have_content("Lucy")
+    fill_in :search, with: "Le"
+    click_on "Search"
+    save_and_open_page
+    expect(page).to have_content("Leo")
+
+    expect(page).not_to have_content("Submit")
+
     click_on "Adopt this Pet"
 
     fill_in :description, with: "I just really love dogs."
     click_on "Submit"
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content("Pending")
     expect(page).to have_content("I just really love dogs.")
-
-
   end
+
+
 end
