@@ -11,7 +11,7 @@ Application.destroy_all
 PetApplication.destroy_all
 shelter_1 = Shelter.create!(foster_program: true, name: "Best Shelter", city: "Daytona", rank: 4)
 application_1 = Application.create!(name: "Freddy Thomas", street: "123 Sesame Street", city: "Daytona", state: "FL", zip_code: "12345", description: "I really love dogs")
-pet_1 = shelter_1.pets.create!(adoptable: true, age: 6, breed: "Pug", name: "Lucy")
-pet_2 = shelter_1.pets.create!(adoptable: true, age: 3, breed: "Labradoodle", name: "Leo")
+pet_1 = Pet.create!(adoptable: true, age: 6, breed: "Pug", name: "Lucy", shelter_id: shelter_1.id)
+pet_2 = Pet.create!(adoptable: true, age: 3, breed: "Labradoodle", name: "Leo", shelter_id: shelter_1.id)
 PetApplication.create!(application: application_1, pet: pet_1)
 PetApplication.create!(application: application_1, pet: pet_2)
