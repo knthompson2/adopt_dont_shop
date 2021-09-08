@@ -73,7 +73,6 @@ RSpec.describe 'the pets index' do
     pet_3 = Pet.create(adoptable: true, age: 4, breed: 'chihuahua', name: 'Elle', shelter_id: shelter.id)
 
     visit "/pets"
-
     fill_in 'Search', with: "Ba"
     click_on("Search")
 
@@ -87,7 +86,6 @@ RSpec.describe 'the pets index' do
     pet_2 = Pet.create(adoptable: true, age: 3, breed: 'doberman', name: 'Lobster', shelter_id: shelter.id)
 
     visit '/pets'
-    save_and_open_page
     expect(page).to have_link("Start an Application")
     click_link("Start an Application")
 

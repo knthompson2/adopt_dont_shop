@@ -22,11 +22,9 @@
 
 
   <h3> Add a Pet to this Application </h3>
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-    <%= f.label :search, "Search for pets by name" %>
-    <%= f.text_field :search %>
-    <%= f.submit "Search" %>
-  <% end %>
+
+
+  <%= render partial: "shared/search", locals: {url: "/applications/#{@application.id}"} %>
 
   <% @pets&.each do |pet| %>
     <h4><%= pet.name %></h4>

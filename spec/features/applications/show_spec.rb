@@ -54,7 +54,6 @@ RSpec.describe 'show page' do
     expect(page).to have_content("Lucy")
     fill_in :search, with: "Le"
     click_on "Search"
-    save_and_open_page
     expect(page).to have_content("Leo")
 
     expect(page).not_to have_content("Submit")
@@ -63,7 +62,6 @@ RSpec.describe 'show page' do
 
     fill_in :description, with: "I just really love dogs."
     click_on "Submit"
-    # save_and_open_page
     expect(page).to have_content("Pending")
     expect(page).to have_content("I just really love dogs.")
   end

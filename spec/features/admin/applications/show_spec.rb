@@ -26,7 +26,6 @@ RSpec.describe 'show page' do
     expect(page).to have_button("Reject #{@pet_1.name}")
     expect(page).to have_button("Reject #{@pet_2.name}")
     click_on "Reject #{@pet_1.name}"
-    save_and_open_page
     expect(page).to have_no_button("Adopt #{@pet_1.name}")
     expect(page).to have_content("#{@pet_1.name} has been rejected")
   end
@@ -37,7 +36,6 @@ RSpec.describe 'show page' do
     click_on "Reject #{@pet_1.name}"
 
     visit "/admin/applications/#{@application_2.id}"
-      save_and_open_page
     expect(page).to have_button("Approve #{@pet_1.name}")
     expect(page).to have_button("Reject #{@pet_1.name}")
 

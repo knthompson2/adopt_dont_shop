@@ -29,5 +29,6 @@ RSpec.describe 'new page' do
     fill_in :zip_code, with: '47304'
     click_on "Submit"
     expect(page).to have_content("Error: Name can't be blank")
+    expect(current_path).to eq("/applications/new")
   end
 end

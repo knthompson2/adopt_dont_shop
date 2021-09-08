@@ -18,7 +18,6 @@ RSpec.describe 'index page' do
     pet_1 = @shelter_1.pets.create!(adoptable: true, age: 6, breed: "Pug", name: "Lucy")
     PetApplication.create!(application: application_1, pet: pet_1)
     visit "/admin/shelters"
-    save_and_open_page
     within("#shelter-#{@shelter_1.id}")do
       expect(page).to have_content(@shelter_1.name)
     end
